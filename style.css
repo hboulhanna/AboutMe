@@ -495,6 +495,75 @@ a { text-decoration: none; color: inherit; }
   color: var(--blue-lt);
 }
 
+/* ===== PASSIONS ===== */
+.passions { background: var(--bg); }
+
+.passions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.passion-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  transition: transform .2s, border-color .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.passion-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.passion-cloud::before { background: linear-gradient(90deg, var(--blue), var(--purple)); }
+.passion-share::before { background: linear-gradient(90deg, var(--teal), var(--green)); }
+
+.passion-cloud { border-color: rgba(15,98,254,.25); }
+.passion-cloud:hover { border-color: var(--blue); transform: translateY(-4px); }
+
+.passion-share { border-color: rgba(0,157,154,.25); }
+.passion-share:hover { border-color: var(--teal); transform: translateY(-4px); }
+
+.passion-icon-wrap {
+  margin-bottom: 18px;
+}
+
+.passion-icon { font-size: 40px; }
+
+.passion-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.passion-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.passion-card p strong { color: var(--text); }
+
+.passion-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.ptag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
 /* ===== CONTACT ===== */
 .contact { background: var(--bg2); }
 
