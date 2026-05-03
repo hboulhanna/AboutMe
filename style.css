@@ -530,6 +530,10 @@ a { text-decoration: none; color: inherit; }
 .passion-share { border-color: rgba(0,157,154,.25); }
 .passion-share:hover { border-color: var(--teal); transform: translateY(-4px); }
 
+.passion-sport::before { background: linear-gradient(90deg, var(--orange), var(--red)); }
+.passion-sport { border-color: rgba(255,131,43,.25); }
+.passion-sport:hover { border-color: var(--orange); transform: translateY(-4px); }
+
 .passion-icon-wrap {
   margin-bottom: 18px;
 }
