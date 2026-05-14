@@ -603,6 +603,23 @@ a { text-decoration: none; color: inherit; }
   color: var(--teal);
 }
 
+.tl-sectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sector-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(138,63,252,.1);
+  border: 1px solid rgba(138,63,252,.25);
+  color: var(--purple);
+}
+
 /* ===== WOMEN IN TECH ===== */
 .women {
   background: linear-gradient(160deg, #0e1525 0%, #1a0e2e 100%);
