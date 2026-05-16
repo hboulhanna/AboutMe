@@ -19,7 +19,7 @@
         <a href="#about">À propos</a>
         <a href="#skills">Skills</a>
         <a href="#certifications">Certifications</a>
-        <a href="#experience">Expériences</a>
+        <a href="#strategic-projects">Projets</a>
         <a href="#women-tech">Femmes &amp; Tech</a>
         <a href="#articles">Articles</a>
         <a href="#ressources">Ressources</a>
@@ -305,67 +305,138 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section experience">
+  <!-- STRATEGIC PROJECTS -->
+  <section id="strategic-projects" class="section sp">
+    <div class="sp-bg-lines" aria-hidden="true">
+      <div class="sp-line"></div><div class="sp-line"></div><div class="sp-line"></div><div class="sp-line"></div>
+    </div>
     <div class="container">
-      <p class="section-label">Parcours professionnel</p>
-      <h2 class="section-title">Expériences</h2>
-      <div class="timeline">
+      <div class="sp-header">
+        <div>
+          <p class="section-label">Architecture Data · Microsoft Fabric · Gouvernance · IA · Monitoring</p>
+          <h2 class="section-title">Projets<br/><span class="teal">Stratégiques</span></h2>
+        </div>
+        <p class="sp-intro">Au-delà des certifications, je conçois et industrialise des plateformes data modernes orientées performance, gouvernance et impact métier.</p>
+      </div>
 
-        <div class="timeline-item current">
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-header">
-              <div>
-                <h3>Microsoft Fabric Technical Leader</h3>
-                <p class="tl-company">INETUM</p>
+      <div class="sp-grid">
+
+        <!-- PROJET 1 -->
+        <div class="sp-card">
+          <div class="sp-card-glow"></div>
+          <div class="sp-card-inner">
+            <div class="sp-card-header">
+              <div class="sp-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
               </div>
-              <span class="tl-date">Oct. 2024 – Présent</span>
+              <div>
+                <h3 class="sp-card-title">Migration vers Microsoft Fabric</h3>
+                <p class="sp-card-sub">Modernisation plateforme data · Lakehouse · Medallion</p>
+              </div>
             </div>
-            <p class="tl-client">Client : <strong>INETUM GROUP</strong></p>
-            <ul class="tl-list">
-              <li>Co-architecture plateforme end-to-end avec les architectes Microsoft (OneLake, Lakehouse, Spark, Data Factory, Power BI) — modèle <strong>Medallion</strong></li>
-              <li>Migration du datawarehouse MySQL vers Microsoft Fabric avec continuité de service</li>
-              <li>Ingestion automatisée multi-sources via Data Factory &amp; Notebooks (ServiceNow, Jira, Confluence, Sonar…)</li>
-              <li>Établissement des guides de déploiement, frameworks de tests et processus de validation</li>
-              <li>Sessions REX avec les architectes Microsoft pour optimiser l'adoption Fabric</li>
-              <li>Identification et remontée des bugs aux équipes produit Microsoft</li>
+            <p class="sp-card-desc">Modernisation d'une plateforme data historique vers Microsoft Fabric avec architecture Lakehouse et modèle Medallion.</p>
+            <ul class="sp-bullets">
+              <li>Migration d'un environnement legacy vers Microsoft Fabric</li>
+              <li>Architecture Medallion Bronze / Silver / Gold</li>
+              <li>Industrialisation pipelines Data Factory &amp; Spark</li>
+              <li>Gouvernance OneLake &amp; sécurisation des accès</li>
+              <li>Continuité de service et optimisation des performances</li>
             </ul>
-            <div class="tl-tools">
-              <span class="tool-tag">MS Fabric</span><span class="tool-tag">PySpark</span>
-              <span class="tool-tag">Azure DevOps</span><span class="tool-tag">Event Hub</span>
-              <span class="tool-tag">KQL</span><span class="tool-tag">Scrum</span>
+            <div class="sp-tags">
+              <span>Microsoft Fabric</span><span>Lakehouse</span><span>Spark</span>
+              <span>OneLake</span><span>Power BI</span><span>Data Factory</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-header">
-              <div>
-                <h3>Data Science &amp; AI Technical Leader</h3>
-                <p class="tl-company">SSII</p>
+        <!-- PROJET 2 -->
+        <div class="sp-card">
+          <div class="sp-card-glow"></div>
+          <div class="sp-card-inner">
+            <div class="sp-card-header">
+              <div class="sp-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
               </div>
-              <span class="tl-date">Juil. 2022 – Oct. 2024</span>
+              <div>
+                <h3 class="sp-card-title">Monitoring Temps Réel &amp; DataOps</h3>
+                <p class="sp-card-sub">Gouvernance pipelines · Alerting KQL · Qualité data</p>
+              </div>
             </div>
-            <p class="tl-client">Forte d'une expérience sur <strong>plusieurs secteurs</strong> : Grande Distribution · Bancaire · Assurance · Semi-public</p>
-            <ul class="tl-list">
-              <li>Mise en place de plateformes Data Modernes adaptées aux contraintes métier de chaque secteur</li>
-              <li>Pipelines de collecte, nettoyage, transformation et intégration des données multi-sources</li>
-              <li>Identification des KPIs sectoriels et création de tableaux de bord — veille concurrentielle</li>
-              <li>Rédaction des DAT / SFD, animation des Compil/Codir et états d'avancement</li>
-              <li>Encadrement technique des équipes data sur chaque mission</li>
+            <p class="sp-card-desc">Conception d'une plateforme temps réel de monitoring et gouvernance des pipelines et incidents data.</p>
+            <ul class="sp-bullets">
+              <li>Monitoring temps réel des incidents et pipelines</li>
+              <li>Intégration ServiceNow / Jira / Sonar / Fortify</li>
+              <li>Contrôle qualité et standards DataOps</li>
+              <li>Alerting temps réel via KQL &amp; Power BI</li>
+              <li>Visualisation backlog et suivi opérationnel</li>
             </ul>
-            <div class="tl-tools">
-              <span class="tool-tag">Azure Synapse</span><span class="tool-tag">Power BI</span>
-              <span class="tool-tag">Python</span><span class="tool-tag">SQL</span><span class="tool-tag">DataOps</span>
+            <div class="sp-tags">
+              <span>KQL</span><span>Power BI</span><span>EventStream</span>
+              <span>ServiceNow</span><span>Microsoft Fabric</span><span>DataOps</span>
             </div>
-            <div class="tl-sectors">
-              <span class="sector-tag">🛒 Grande Distribution</span>
-              <span class="sector-tag">🏦 Bancaire</span>
-              <span class="sector-tag">🛡️ Assurance</span>
-              <span class="sector-tag">🏛️ Semi-public</span>
+          </div>
+        </div>
+
+        <!-- PROJET 3 -->
+        <div class="sp-card">
+          <div class="sp-card-glow"></div>
+          <div class="sp-card-inner">
+            <div class="sp-card-header">
+              <div class="sp-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="sp-card-title">Plateforme Finance &amp; Pilotage Data</h3>
+                <p class="sp-card-sub">KPIs financiers · Forecast · Agent conversationnel</p>
+              </div>
+            </div>
+            <p class="sp-card-desc">Architecture et industrialisation d'un environnement analytique Finance &amp; KPI Management.</p>
+            <ul class="sp-bullets">
+              <li>Construction KPIs financiers et opérationnels</li>
+              <li>Reporting multi-sources consolidé</li>
+              <li>Sécurisation des données via RLS</li>
+              <li>Analyse Forecast / Actual / YTD</li>
+              <li>Agent conversationnel Data Finance</li>
+            </ul>
+            <div class="sp-tags">
+              <span>Power BI</span><span>SQL</span><span>TM1</span>
+              <span>Microsoft Fabric</span><span>RLS</span><span>Analytics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJET 4 -->
+        <div class="sp-card">
+          <div class="sp-card-glow"></div>
+          <div class="sp-card-inner">
+            <div class="sp-card-header">
+              <div class="sp-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="sp-card-title">Data Governance &amp; Sécurité</h3>
+                <p class="sp-card-sub">Standards · Accès · Architecture · Documentation</p>
+              </div>
+            </div>
+            <p class="sp-card-desc">Structuration des standards de gouvernance et sécurisation des environnements data.</p>
+            <ul class="sp-bullets">
+              <li>Gouvernance des accès et gestion des rôles</li>
+              <li>Structuration environnements Bronze / Silver / Gold</li>
+              <li>Standards qualité et documentation technique</li>
+              <li>Sécurisation des accès utilisateurs</li>
+              <li>Organisation DataOps &amp; bonnes pratiques</li>
+            </ul>
+            <div class="sp-tags">
+              <span>Azure</span><span>Fabric</span><span>Governance</span>
+              <span>DevOps</span><span>Security</span><span>Architecture</span>
             </div>
           </div>
         </div>
