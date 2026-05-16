@@ -102,6 +102,22 @@ wtWords.forEach((w, i) => {
   wordObserver.observe(w);
 });
 
+// ── Hamburger menu ─────────────────────────────────────────────
+const burger = document.getElementById('navBurger');
+const navMenu = document.getElementById('navLinks');
+if (burger && navMenu) {
+  burger.addEventListener('click', () => {
+    const open = navMenu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      burger.classList.remove('open');
+    });
+  });
+}
+
 // ── SP cards — subtle parallax on mouse ────────────────────────
 document.querySelectorAll('.sp-card').forEach(card => {
   card.addEventListener('mousemove', e => {
