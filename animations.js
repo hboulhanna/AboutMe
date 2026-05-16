@@ -1,7 +1,13 @@
-// Scroll reveal
-const revealEls = document.querySelectorAll(
-  '.about-card, .skill-group, .cert-card, .timeline-item, .passion-card, .women-card, .topic-card, .article-card, .about-left, .about-right'
-);
+// ── Scroll reveal ──────────────────────────────────────────────
+const revealSelectors = [
+  '.about-card', '.skill-group', '.cert-card', '.passion-card',
+  '.women-card', '.topic-card', '.article-card', '.about-left',
+  '.about-right', '.sp-card', '.offer-card',
+  '.wt-manifesto', '.wt-signature-layout', '.wt-quote', '.wt-why-layout',
+  '.res-card', '.res-featured'
+];
+
+const revealEls = document.querySelectorAll(revealSelectors.join(','));
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -10,7 +16,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
 revealEls.forEach(el => {
   el.classList.add('hidden');
@@ -18,20 +24,22 @@ revealEls.forEach(el => {
 });
 
 // Stagger children in grids
-document.querySelectorAll('.women-grid, .articles-grid, .skills-grid, .certs-grid, .passions-grid, .about-cards, .articles-topics').forEach(grid => {
+document.querySelectorAll(
+  '.skills-grid, .certs-grid, .passions-grid, .about-cards, .articles-hero-topics, .sp-grid, .booking-offer, .res-grid'
+).forEach(grid => {
   Array.from(grid.children).forEach((child, i) => {
-    child.style.transitionDelay = `${i * 80}ms`;
+    child.style.transitionDelay = `${i * 70}ms`;
   });
 });
 
-// Nav active link on scroll
-const sections = document.querySelectorAll('section[id]');
+// ── Nav active on scroll ────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], header[id]');
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks.forEach(l => l.classList.remove('active'));
       const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
       if (active) active.classList.add('active');
     }
@@ -40,13 +48,8 @@ const navObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => navObserver.observe(s));
 
-// Typed effect for hero subtitle
-const phrases = [
-  'MS Fabric Expert',
-  'Data & AI Trainer',
-  'Tech Lead Data',
-  'MCT Microsoft',
-];
+// ── Typed effect in banner ──────────────────────────────────────
+const phrases = ['MS Fabric Expert', 'Data & AI Trainer', 'Tech Lead Data', 'MCT Microsoft'];
 let pIdx = 0, cIdx = 0, deleting = false;
 const typed = document.getElementById('typed-text');
 
@@ -54,40 +57,61 @@ function typeLoop() {
   if (!typed) return;
   const current = phrases[pIdx];
   typed.textContent = deleting ? current.slice(0, cIdx--) : current.slice(0, ++cIdx);
-
   if (!deleting && cIdx === current.length) {
-    setTimeout(() => { deleting = true; typeLoop(); }, 2000);
+    setTimeout(() => { deleting = true; typeLoop(); }, 2200);
     return;
   }
-  if (deleting && cIdx === 0) {
-    deleting = false;
-    pIdx = (pIdx + 1) % phrases.length;
-  }
-  setTimeout(typeLoop, deleting ? 45 : 90);
+  if (deleting && cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+  setTimeout(typeLoop, deleting ? 40 : 85);
 }
 typeLoop();
 
-// Smooth counter animation for stats
+// ── Animated counters ───────────────────────────────────────────
 const counters = document.querySelectorAll('.stat-num');
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = parseInt(el.dataset.target);
-      let current = 0;
-      const step = target / 40;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current);
-        if (current >= target) clearInterval(timer);
-      }, 30);
-      counterObserver.unobserve(el);
-    }
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const step = target / 40;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current);
+      if (current >= target) clearInterval(timer);
+    }, 28);
+    counterObserver.unobserve(el);
   });
 }, { threshold: 0.5 });
 
-counters.forEach(c => {
-  c.dataset.target = c.textContent;
-  c.textContent = '0';
-  counterObserver.observe(c);
+counters.forEach(c => { c.dataset.target = c.textContent; c.textContent = '0'; counterObserver.observe(c); });
+
+// ── Women section — word-by-word reveal ────────────────────────
+const wtWords = document.querySelectorAll('.wt-why-words span, .wt-manifesto-verbs span');
+const wordObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('wt-word-visible');
+      wordObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+wtWords.forEach((w, i) => {
+  w.style.transitionDelay = `${i * 120}ms`;
+  wordObserver.observe(w);
+});
+
+// ── SP cards — subtle parallax on mouse ────────────────────────
+document.querySelectorAll('.sp-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    card.querySelector('.sp-card-inner').style.transform =
+      `rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.querySelector('.sp-card-inner').style.transform = '';
+  });
 });
