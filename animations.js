@@ -34,13 +34,13 @@ document.querySelectorAll(
 
 // ── Nav active on scroll ────────────────────────────────────────
 const sections = document.querySelectorAll('section[id], header[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
       if (active) active.classList.add('active');
     }
   });
@@ -102,20 +102,39 @@ wtWords.forEach((w, i) => {
   wordObserver.observe(w);
 });
 
-// ── Hamburger menu ─────────────────────────────────────────────
-const burger = document.getElementById('navBurger');
+// ── Nav: scroll shadow ─────────────────────────────────────────
+const mainNav = document.getElementById('mainNav');
+if (mainNav) {
+  const onScroll = () => mainNav.classList.toggle('scrolled', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// ── Hamburger menu — premium ───────────────────────────────────
+const burger  = document.getElementById('navBurger');
 const navMenu = document.getElementById('navLinks');
+const overlay = document.getElementById('navOverlay');
+
+function closeNav() {
+  navMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  if (overlay) overlay.classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
 if (burger && navMenu) {
   burger.addEventListener('click', () => {
     const open = navMenu.classList.toggle('open');
     burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    if (overlay) overlay.classList.toggle('visible', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
-  navMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('open');
-      burger.classList.remove('open');
-    });
-  });
+
+  navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
+  if (overlay) overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 }
 
 // ── SP cards — subtle parallax on mouse ────────────────────────
