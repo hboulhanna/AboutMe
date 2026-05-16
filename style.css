@@ -1905,6 +1905,7 @@ a { text-decoration: none; color: inherit; }
 .social-btn:hover { opacity: .85; transform: translateY(-1px); }
 
 .social-li  { background: #0077b5; color: #fff; }
+.social-med { background: #000; color: #fff; }
 .social-sub { background: #ff6719; color: #fff; }
 
 /* CONTACT UPDATED */
