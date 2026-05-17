@@ -2024,11 +2024,36 @@ a:focus-visible, button:focus-visible { border-radius: 6px; }
 .footer-social a:hover { color: var(--teal); transform: translateY(-2px); }
 
 .footer-bottom {
-  border-top: 1px solid var(--dark-border);
-  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 18px 0;
   text-align: center;
 }
-.footer-bottom p { font-size: 12px; color: var(--dark-muted); }
+.footer-bottom p {
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: rgba(122,138,170,.55);
+}
+
+.footer-brand {
+  color: rgba(122,138,170,.55);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: .03em;
+  position: relative;
+  transition: color .25s;
+}
+.footer-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 100%;
+  height: 1px;
+  background: var(--teal);
+  transition: right .3s cubic-bezier(.4,0,.2,1);
+}
+.footer-brand:hover { color: rgba(232,237,248,.7); }
+.footer-brand:hover::after { right: 0; }
 
 /* ===== RESPONSIVE ===== */
 
