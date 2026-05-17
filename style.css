@@ -88,6 +88,31 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
+/* ── Skip link — accessibility ───────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  background: var(--teal);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px;
+  transition: top .2s;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ── Focus visible — keyboard nav ────────────────── */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+a:focus-visible, button:focus-visible { border-radius: 6px; }
+
 /* ===== NAV — PREMIUM ===== */
 .nav {
   position: fixed;
