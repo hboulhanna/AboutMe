@@ -4,7 +4,8 @@ const revealSelectors = [
   '.women-card', '.topic-card', '.article-card', '.about-left',
   '.about-right', '.sp-card', '.offer-card',
   '.wt-manifesto', '.wt-signature-layout', '.wt-quote', '.wt-why-layout',
-  '.res-card', '.res-featured'
+  '.res-card', '.res-featured',
+  '.ahub-card', '.ahub-featured', '.ahub-nl'
 ];
 
 const revealEls = document.querySelectorAll(revealSelectors.join(','));
@@ -25,7 +26,7 @@ revealEls.forEach(el => {
 
 // Stagger children in grids
 document.querySelectorAll(
-  '.skills-grid, .certs-grid, .passions-grid, .about-cards, .articles-hero-topics, .sp-grid, .booking-offer, .res-grid'
+  '.skills-grid, .certs-grid, .passions-grid, .about-cards, .ahub-grid, .sp-grid, .booking-offer, .res-grid'
 ).forEach(grid => {
   Array.from(grid.children).forEach((child, i) => {
     child.style.transitionDelay = `${i * 70}ms`;
@@ -136,6 +137,132 @@ if (burger && navMenu) {
   if (overlay) overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 }
+
+// ── Articles Hub — filter, subcats, search ─────────────────────
+(function () {
+  const SUBCATS = {
+    fabric:     [{k:'architecture',l:'Architecture'},{k:'lakehouse',l:'Lakehouse'},{k:'real-time',l:'Real-Time Intel'},{k:'warehouse',l:'Warehouse'},{k:'governance',l:'Governance'},{k:'performance',l:'Performance'},{k:'data-factory',l:'Data Factory'}],
+    azure:      [{k:'devops',l:'DevOps'},{k:'dataops',l:'DataOps'},{k:'security',l:'Sécurité'},{k:'monitoring',l:'Monitoring'}],
+    powerbi:    [{k:'dax',l:'DAX'},{k:'modelisation',l:'Modélisation'},{k:'visualisation',l:'Visualisation'},{k:'performance',l:'Performance'}],
+    dataeng:    [{k:'pyspark',l:'PySpark'},{k:'sql',l:'SQL'},{k:'medallion',l:'Medallion'},{k:'streaming',l:'Streaming'}],
+    ai:         [{k:'agents',l:'Agents'},{k:'azure-openai',l:'Azure OpenAI'},{k:'rag',l:'RAG'},{k:'ml',l:'ML'}],
+    certif:     [{k:'dp-700',l:'DP-700'},{k:'dp-600',l:'DP-600'},{k:'dp-750',l:'DP-750'},{k:'pl-300',l:'PL-300'},{k:'az-400',l:'AZ-400'},{k:'mct',l:'MCT'}],
+    career:     [{k:'tech-lead',l:'Tech Lead'},{k:'freelancing',l:'Freelancing'},{k:'learning',l:'Learning'},{k:'soft-skills',l:'Soft Skills'}],
+    leadership: [{k:'femmes-tech',l:'Femmes & Tech'},{k:'vision',l:'Vision'},{k:'management',l:'Management'}],
+  };
+
+  const catBtns     = document.querySelectorAll('.ahub-cat');
+  const subcatWrap  = document.getElementById('ahubSubcats');
+  const cards       = document.querySelectorAll('#ahubGrid .ahub-card');
+  const featured    = document.querySelector('.ahub-featured');
+  const emptyState  = document.querySelector('.ahub-empty');
+  const countNum    = document.getElementById('ahubNum');
+  const searchInput = document.getElementById('ahubSearch');
+  const resetBtns   = document.querySelectorAll('.ahub-reset');
+
+  if (!catBtns.length) return;
+
+  let activeCat    = 'all';
+  let activeSubcat = null;
+  let searchQuery  = '';
+
+  function renderSubcats(cat) {
+    if (!subcatWrap) return;
+    subcatWrap.innerHTML = '';
+    if (cat === 'all' || !SUBCATS[cat]) {
+      subcatWrap.hidden = true;
+      return;
+    }
+    subcatWrap.hidden = false;
+    SUBCATS[cat].forEach(({ k, l }) => {
+      const btn = document.createElement('button');
+      btn.className = 'ahub-subcat' + (activeSubcat === k ? ' active' : '');
+      btn.dataset.subcat = k;
+      btn.textContent = l;
+      btn.addEventListener('click', () => {
+        if (activeSubcat === k) {
+          activeSubcat = null;
+          btn.classList.remove('active');
+        } else {
+          activeSubcat = k;
+          subcatWrap.querySelectorAll('.ahub-subcat').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        }
+        applyFilters();
+      });
+      subcatWrap.appendChild(btn);
+    });
+  }
+
+  function applyFilters() {
+    const q = searchQuery.toLowerCase().trim();
+    let visible = 0;
+
+    // Featured card
+    if (featured) {
+      const fc = featured.dataset.cat;
+      const fs = featured.dataset.subcat;
+      const ft = (featured.dataset.title || '').toLowerCase();
+      const catMatch  = activeCat === 'all' || fc === activeCat;
+      const subMatch  = !activeSubcat  || fs === activeSubcat;
+      const qMatch    = !q || ft.includes(q);
+      featured.hidden = !(catMatch && subMatch && qMatch);
+      if (!featured.hidden) visible++;
+    }
+
+    cards.forEach(card => {
+      const cc = card.dataset.cat;
+      const cs = card.dataset.subcat;
+      const ct = (card.dataset.title || '').toLowerCase();
+      const catMatch  = activeCat === 'all' || cc === activeCat;
+      const subMatch  = !activeSubcat  || cs === activeSubcat;
+      const qMatch    = !q || ct.includes(q);
+      const show = catMatch && subMatch && qMatch;
+      card.hidden = !show;
+      if (show) visible++;
+    });
+
+    if (countNum) countNum.textContent = visible;
+    if (emptyState) emptyState.hidden = visible > 0;
+  }
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat    = btn.dataset.cat;
+      activeSubcat = null;
+      catBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      renderSubcats(activeCat);
+      applyFilters();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value;
+      applyFilters();
+    });
+  }
+
+  resetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat    = 'all';
+      activeSubcat = null;
+      searchQuery  = '';
+      if (searchInput) searchInput.value = '';
+      catBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      const allBtn = document.querySelector('.ahub-cat[data-cat="all"]');
+      if (allBtn) { allBtn.classList.add('active'); allBtn.setAttribute('aria-selected', 'true'); }
+      renderSubcats('all');
+      applyFilters();
+    });
+  });
+
+  // Init
+  renderSubcats('all');
+  applyFilters();
+})();
 
 // ── SP cards — subtle parallax on mouse ────────────────────────
 document.querySelectorAll('.sp-card').forEach(card => {

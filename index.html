@@ -688,84 +688,275 @@
 
   </section>
 
-  <!-- ARTICLES -->
-  <section id="articles" class="section articles" aria-label="Articles et contenus">
+  <!-- ARTICLES HUB -->
+  <section id="articles" class="section articles" aria-label="Hub éditorial — Articles et contenus">
     <div class="container">
-      <div class="art-header">
-        <div>
-          <p class="section-label">Partage de connaissances</p>
-          <h2 class="section-title">Articles &amp;<br/><span class="teal">Contenus</span></h2>
+
+      <!-- Hub header -->
+      <div class="ahub-top">
+        <div class="ahub-top-left">
+          <p class="section-label">Hub éditorial</p>
+          <h2 class="section-title">Articles &amp; <span class="teal">Contenus</span></h2>
+          <p class="ahub-desc">Tutoriels Microsoft Fabric, retours terrain Azure, guides certifications et réflexions carrière — sans filtre.</p>
         </div>
-        <div class="art-header-right">
-          <p>Tutoriels Microsoft Fabric, retours terrain Azure, guides de certifications et réflexions sur la carrière d'une ingénieure Data. Tout ce qui m'a aidé, partagé sans filtre.</p>
-          <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="btn-teal">Lire sur Substack</a>
+        <div class="ahub-top-right">
+          <div class="ahub-search-wrap">
+            <svg class="ahub-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="ahub-search" id="ahubSearch" type="search" placeholder="Rechercher un article…" autocomplete="off" aria-label="Rechercher un article" spellcheck="false" />
+          </div>
+          <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="btn-teal">S'abonner</a>
         </div>
       </div>
 
-      <div class="art-grid">
+      <!-- Category tabs -->
+      <div class="ahub-cats-scroll" role="tablist" aria-label="Catégories d'articles">
+        <div class="ahub-cats" id="ahubCats">
+          <button class="ahub-cat active" data-cat="all"        role="tab" aria-selected="true">Tous</button>
+          <button class="ahub-cat" data-cat="fabric"      role="tab" aria-selected="false">Microsoft Fabric</button>
+          <button class="ahub-cat" data-cat="azure"       role="tab" aria-selected="false">Azure &amp; Cloud</button>
+          <button class="ahub-cat" data-cat="powerbi"     role="tab" aria-selected="false">Power BI</button>
+          <button class="ahub-cat" data-cat="dataeng"     role="tab" aria-selected="false">Data Engineering</button>
+          <button class="ahub-cat" data-cat="ai"          role="tab" aria-selected="false">AI &amp; Agents</button>
+          <button class="ahub-cat" data-cat="certif"      role="tab" aria-selected="false">Certifications</button>
+          <button class="ahub-cat" data-cat="career"      role="tab" aria-selected="false">Carrière</button>
+          <button class="ahub-cat" data-cat="leadership"  role="tab" aria-selected="false">Leadership</button>
+        </div>
+      </div>
 
-        <div class="art-card art-featured">
-          <div class="art-card-top">
-            <span class="art-cat art-cat-fabric">Microsoft Fabric</span>
-            <span class="art-soon">Bientôt</span>
+      <!-- Sub-category chips (injected by JS) -->
+      <div class="ahub-subcats" id="ahubSubcats" aria-live="polite" hidden></div>
+
+      <!-- Article count -->
+      <p class="ahub-count" id="ahubCount" aria-live="polite"><span id="ahubNum">10</span> articles</p>
+
+      <!-- FEATURED article -->
+      <article class="ahub-featured" data-cat="fabric" data-subcat="architecture" data-title="Architecture Lakehouse Medallion sur Microsoft Fabric">
+        <div class="ahub-feat-glow" aria-hidden="true"></div>
+        <div class="ahub-feat-content">
+          <div class="ahub-feat-meta">
+            <span class="ahub-badge ahub-badge-fabric">Microsoft Fabric</span>
+            <span class="ahub-badge-sub">Architecture</span>
+            <span class="ahub-feat-pin">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              À la une
+            </span>
           </div>
-          <h3>Architecture Lakehouse &amp; Medallion sur Microsoft Fabric</h3>
-          <p>De Bronze à Gold — comment structurer votre data platform pour la performance, la gouvernance et l'évolutivité.</p>
-          <div class="art-footer">
-            <span class="art-read">10 min de lecture</span>
-            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="art-link">Lire →</a>
+          <h3 class="ahub-feat-title">Architecture Lakehouse &amp; Medallion<br class="ahub-feat-br"/>sur Microsoft Fabric</h3>
+          <p class="ahub-feat-desc">De Bronze à Gold — comment structurer votre data platform pour la performance, la gouvernance et l'évolutivité. Le guide complet de l'architecte.</p>
+          <div class="ahub-feat-footer">
+            <span class="ahub-read-time">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              10 min
+            </span>
+            <span class="ahub-date">Mai 2026</span>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-feat-link">
+              Lire l'article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
+        <div class="ahub-feat-visual" aria-hidden="true">
+          <div class="ahub-medallion">
+            <div class="ahub-layer ahub-gold">
+              <span>Gold</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="ahub-layer ahub-silver">
+              <span>Silver</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="ahub-layer ahub-bronze">
+              <span>Bronze</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
 
-        <div class="art-card">
-          <div class="art-card-top">
-            <span class="art-cat art-cat-certif">Certification</span>
-            <span class="art-soon">Bientôt</span>
+      <!-- Articles grid -->
+      <div class="ahub-grid" id="ahubGrid">
+
+        <article class="ahub-card" data-cat="certif" data-subcat="dp-700" data-title="Passer la DP-700 du premier coup">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-certif">Certifications</span>
+            <span class="ahub-badge-sub">DP-700</span>
           </div>
           <h3>Passer la DP-700 du premier coup</h3>
           <p>Plan de révision, ressources clés et pièges à éviter pour décrocher la certification Fabric Data Engineer.</p>
-          <div class="art-footer">
-            <span class="art-read">8 min de lecture</span>
-            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="art-link">Lire →</a>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>8 min</span>
+              <span class="ahub-date">Juin 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
           </div>
-        </div>
+        </article>
 
-        <div class="art-card">
-          <div class="art-card-top">
-            <span class="art-cat art-cat-career">Carrière</span>
-            <span class="art-soon">Bientôt</span>
+        <article class="ahub-card" data-cat="career" data-subcat="tech-lead" data-title="Tech Lead Data à 26 ans mon parcours">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-career">Carrière</span>
+            <span class="ahub-badge-sub">Tech Lead</span>
           </div>
           <h3>Tech Lead Data à 26 ans — mon parcours</h3>
           <p>Ce que j'aurais fait différemment, les décisions clés et les conseils pour progresser vite dans la Data.</p>
-          <div class="art-footer">
-            <span class="art-read">12 min de lecture</span>
-            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="art-link">Lire →</a>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12 min</span>
+              <span class="ahub-date">Juil. 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
           </div>
-        </div>
+        </article>
 
-        <div class="art-card">
-          <div class="art-card-top">
-            <span class="art-cat art-cat-azure">Azure &amp; Cloud</span>
-            <span class="art-soon">Bientôt</span>
+        <article class="ahub-card" data-cat="azure" data-subcat="dataops" data-title="DataOps sur Azure standards et gouvernance">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-azure">Azure &amp; Cloud</span>
+            <span class="ahub-badge-sub">DataOps</span>
           </div>
           <h3>DataOps sur Azure — standards et gouvernance</h3>
-          <p>Comment structurer vos pipelines, vos environnements et votre documentation pour un DataOps industrialisé.</p>
-          <div class="art-footer">
-            <span class="art-read">9 min de lecture</span>
-            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="art-link">Lire →</a>
+          <p>Comment structurer vos pipelines, environnements et documentation pour un DataOps industrialisé.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>9 min</span>
+              <span class="ahub-date">Août 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
           </div>
-        </div>
+        </article>
 
-        <div class="art-card art-newsletter">
-          <div class="art-nl-inner">
-            <p class="art-nl-eyebrow">Newsletter hebdomadaire</p>
-            <h3>Microsoft Fabric Architect</h3>
-            <p>Une actu Fabric, un tip Azure, un retour terrain — chaque semaine dans votre boîte mail.</p>
-            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="btn-teal">S'abonner gratuitement</a>
+        <article class="ahub-card" data-cat="fabric" data-subcat="real-time" data-title="Real-Time Intelligence avec KQL dans Fabric">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-fabric">Microsoft Fabric</span>
+            <span class="ahub-badge-sub">Real-Time Intel</span>
           </div>
-        </div>
+          <h3>Real-Time Intelligence avec KQL dans Fabric</h3>
+          <p>Monitoring temps réel, Eventhouse et KQL — construire un pipeline de surveillance end-to-end.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>11 min</span>
+              <span class="ahub-date">Sept. 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="powerbi" data-subcat="performance" data-title="Direct Lake dans Power BI guide complet">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-powerbi">Power BI</span>
+            <span class="ahub-badge-sub">Performance</span>
+          </div>
+          <h3>Direct Lake dans Power BI — guide complet</h3>
+          <p>Comprendre le mode Direct Lake, ses avantages sur Import/DirectQuery et les cas d'usage optimaux.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>8 min</span>
+              <span class="ahub-date">Oct. 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="ai" data-subcat="agents" data-title="Agents IA avec Azure OpenAI et Microsoft Fabric">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-ai">AI &amp; Agents</span>
+            <span class="ahub-badge-sub">Agents</span>
+          </div>
+          <h3>Agents IA avec Azure OpenAI &amp; Microsoft Fabric</h3>
+          <p>Construire des agents conversationnels sur votre data lakehouse — architecture, patterns et déploiement.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>14 min</span>
+              <span class="ahub-date">Nov. 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="dataeng" data-subcat="pyspark" data-title="PySpark pour les Data Engineers les essentiels">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-dataeng">Data Engineering</span>
+            <span class="ahub-badge-sub">PySpark</span>
+          </div>
+          <h3>PySpark pour les Data Engineers — les essentiels</h3>
+          <p>Transformations, optimisations et bonnes pratiques PySpark dans les Fabric Notebooks.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>10 min</span>
+              <span class="ahub-date">Déc. 2026</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="fabric" data-subcat="governance" data-title="Governance OneLake stratégie multi-workspace">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-fabric">Microsoft Fabric</span>
+            <span class="ahub-badge-sub">Governance</span>
+          </div>
+          <h3>Governance OneLake — stratégie multi-workspace</h3>
+          <p>Organiser vos workspaces Fabric, sécuriser les accès et implémenter une gouvernance data scalable.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>9 min</span>
+              <span class="ahub-date">Jan. 2027</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="leadership" data-subcat="femmes-tech" data-title="Femmes en tech dépasser le syndrome de l imposteur">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-leadership">Leadership</span>
+            <span class="ahub-badge-sub">Femmes &amp; Tech</span>
+          </div>
+          <h3>Femmes en tech — dépasser le syndrome de l'imposteur</h3>
+          <p>Stratégies concrètes pour prendre sa place, construire sa légitimité et avancer sans se freiner.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 min</span>
+              <span class="ahub-date">Fév. 2027</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
+
+        <article class="ahub-card" data-cat="certif" data-subcat="dp-600" data-title="Réussir la DP-600 Fabric Analytics Engineer">
+          <div class="ahub-card-top">
+            <span class="ahub-badge ahub-badge-certif">Certifications</span>
+            <span class="ahub-badge-sub">DP-600</span>
+          </div>
+          <h3>Réussir la DP-600 — Fabric Analytics Engineer</h3>
+          <p>Retour d'expérience sur la préparation, les sujets clés et les ressources officielles pour passer la DP-600.</p>
+          <div class="ahub-card-footer">
+            <div class="ahub-card-meta">
+              <span class="ahub-read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>9 min</span>
+              <span class="ahub-date">Mars 2027</span>
+            </div>
+            <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="ahub-link">Lire →</a>
+          </div>
+        </article>
 
       </div>
+
+      <!-- Empty state -->
+      <div class="ahub-empty" id="ahubEmpty" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p>Aucun article trouvé.</p>
+        <button class="ahub-reset-btn" id="ahubReset">Effacer les filtres</button>
+      </div>
+
+      <!-- Newsletter strip -->
+      <div class="ahub-nl">
+        <div class="ahub-nl-inner">
+          <div>
+            <p class="ahub-nl-eyebrow">Newsletter hebdomadaire</p>
+            <h3 class="ahub-nl-title">Microsoft Fabric Architect</h3>
+            <p class="ahub-nl-desc">Une actu Fabric, un tip Azure, un retour terrain — chaque semaine dans votre boîte mail.</p>
+          </div>
+          <a href="https://microsoftfabricarchitect.substack.com" target="_blank" rel="noopener" class="btn-teal">S'abonner gratuitement</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
